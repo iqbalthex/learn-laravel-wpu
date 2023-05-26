@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('layouts.main')
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+@section('container')
 
-<link type="text/css" rel="stylesheet" href="./css/style.css" />
+@foreach($posts as $post)
+  <article class="mb-4">
+    <h2>
+      <a href="{{ route('post.detail', $post['slug']) }}">{{ $post['title'] }}</a>
+    </h2>
+    <h5>By: {{ $post['author'] }}</h5>
+    <p>{{ $post['body'] }}</p>
+  </article>
+@endforeach
 
-<script type="text/javascript" src="./js/script.js" defer></script>
-
-<title>WPU - Blog | Posts</title>
-
-</head>
-<body>
-
-<h1>Halaman Posts</h1>
-
-</body>
-</html>
+@endsection
