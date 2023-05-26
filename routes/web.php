@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,47 +19,9 @@ Route::get('/about', function () {
   ]);
 })->name('about');
 
-Route::get('/blog', function () {
-  return view('posts', [
-    'title' => 'Posts',
-    'posts' => [
-      [
-        'title' => 'Judul Post Pertama',
-        'author' => 'Iqbal Arie Maulana',
-        'body' => 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ',
-        'slug' => 'judul-post-pertama',
-      ],
-      [
-        'title' => 'Judul Post Kedua',
-        'author' => 'Saya',
-        'body' => 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ',
-        'slug' => 'judul-post-kedua',
-      ],
-    ],
-  ]);
-})->name('posts');
-
-Route::get('/posts/{slug}', function ($slug) {
-  $posts = [
-    [
-      'title' => 'Judul Post Pertama',
-      'author' => 'Iqbal Arie Maulana',
-      'body' => 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ',
-      'slug' => 'judul-post-pertama',
-    ],
-    [
-      'title' => 'Judul Post Kedua',
-      'author' => 'Saya',
-      'body' => 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ',
-      'slug' => 'judul-post-kedua',
-    ],
-  ];
-
-  $post = collect(array_filter($posts, fn($data) => $data['slug'] == $slug))->first();
-
-  return view('post', [
-    'title' => 'Single Post',
-    'slug' => $post['slug'],
-    ...compact('post'),
-  ]);
-})->name('post.detail');
+Route::controller(PostController::class)
+  ->prefix('/posts')->name('posts')
+  ->group(function () {
+  Route::get('/', 'index');
+  Route::get('/{slug}', 'detail')->name('.detail');
+});
