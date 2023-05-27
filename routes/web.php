@@ -36,10 +36,10 @@ Route::controller(CategoryController::class)
     Route::get('/{category:slug}', 'posts')->name('.posts');
 });
 
-Route::get('/authors/{user:username}', function (User $user) {
+Route::get('/authors/{author:username}', function (User $author) {
   return view('posts', [
     'title' => 'User Posts',
-    'title_heading' => "Post by: {$user->name}",
-    'posts' => $user->posts,
+    'title_heading' => "Post by Author: {$author->name}",
+    'posts' => $author->posts->load('category', 'author'),
   ]);
 })->name('authors.posts');

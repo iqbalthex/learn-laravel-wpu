@@ -15,7 +15,7 @@ class PostController extends Controller
     $data = [
       'title' => 'Posts',
       'title_heading' => 'Halaman Blog Posts',
-      'posts' => Post::latest()->get(),
+      'posts' => Post::with('author', 'category')->latest()->get(),
     ];
 
     return view('posts', $data);

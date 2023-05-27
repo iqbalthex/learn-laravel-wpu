@@ -28,10 +28,11 @@ class CategoryController extends Controller
   public function posts(Category $category): View {
     $data = [
       'title' => $category->name,
-      'posts' => $category->posts,
+      'title_heading' => "Post by Category: {$category->name}",
+      'posts' => $category->posts->load('category', 'author'),
       'category' => $category->name,
     ];
 
-    return view('category', $data);
+    return view('posts', $data);
   }
 }
