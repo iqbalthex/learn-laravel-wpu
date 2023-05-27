@@ -7,9 +7,10 @@
   </h2>
   <p>
     By.
-    <span class="text-decoration-none text-danger fw-bold">
-      {{ $author }}
-    </span>
+    <a href="{{ route('authors.posts' , $authorUsername) }}"
+      class="text-decoration-none text-danger fw-bold">
+      {{ $authorName }}
+    </a>
     in
     <a href="{{ route('categories.posts', $categorySlug) }}"
       class="text-decoration-none text-danger fw-bold">

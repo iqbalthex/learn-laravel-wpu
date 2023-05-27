@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,3 +35,11 @@ Route::controller(CategoryController::class)
     Route::get('/', 'index');
     Route::get('/{category:slug}', 'posts')->name('.posts');
 });
+
+Route::get('/authors/{user:username}', function (User $user) {
+  return view('posts', [
+    'title' => 'User Posts',
+    'title_heading' => "Post by: {$user->name}",
+    'posts' => $user->posts,
+  ]);
+})->name('authors.posts');

@@ -20,9 +20,10 @@ class PostFactory extends Factory
     return [
       'user_id' => mt_rand(1,3),
       'category_id' => mt_rand(1,3),
-      'title' => fake()->name(),
-      'excerpt' => 'ye',
-      'body' => 'yey',
+      'title' => fake()->sentence(5),
+      'slug' => fake()->slug(),
+      'excerpt' => fake()->sentence(mt_rand(8,15)),
+      'body' => fake()->paragraph(mt_rand(3,6)),
     ];
   }
 

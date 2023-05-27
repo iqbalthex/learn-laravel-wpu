@@ -11,8 +11,6 @@
 </p>
 {!! $post->body !!}
 
-<br>
-
-<a href="{{ route('posts') }}" class="text-decoration-none">Back to Posts</a>
+<a href="{{ route('posts') }}" class="d-block text-decoration-none">Back to Posts</a>
 
 @endsection

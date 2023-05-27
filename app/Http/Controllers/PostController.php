@@ -14,7 +14,8 @@ class PostController extends Controller
   public function index(): View {
     $data = [
       'title' => 'Posts',
-      'posts' => Post::all(),
+      'title_heading' => 'Halaman Blog Posts',
+      'posts' => Post::latest()->get(),
     ];
 
     return view('posts', $data);
