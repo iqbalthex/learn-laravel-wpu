@@ -8,7 +8,7 @@
   <ul>
     <li>
       <h2>
-        <a href="{{ route('categories', $category->slug) }}">
+        <a href="{{ route('categories.posts', $category->slug) }}">
           {{ $category->name }}
         </a>
       </h2>

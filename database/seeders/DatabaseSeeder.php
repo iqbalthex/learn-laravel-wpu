@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     for ($i=0; $i<10; $i++) {
       \App\Models\Post::factory()->create(['slug' => "yey$i"]);
     }
-    // \App\Models\User::factory(3)->create();
+    \App\Models\User::factory(3)->create();
 
     // \App\Models\User::factory()->create([
         // 'name' => 'Test User',
