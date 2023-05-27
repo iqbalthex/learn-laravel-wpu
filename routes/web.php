@@ -23,5 +23,5 @@ Route::controller(PostController::class)
   ->prefix('/posts')->name('posts')
   ->group(function () {
   Route::get('/', 'index');
-  Route::get('/{slug}', 'detail')->name('.detail');
+  Route::get('/{post:slug}', 'detail')->name('.detail');
 });

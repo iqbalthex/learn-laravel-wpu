@@ -4,23 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
-  public function index() {
-    return view('posts', [
+  /**
+   * @return Illuminate\View\View
+   */
+  public function index(): View {
+    $data = [
       'title' => 'Posts',
       'posts' => Post::all(),
-    ]);
+    ];
+
+    return view('posts', $data);
   }
 
-  public function detail($slug) {
-    $post = Post::find($slug);
-
+  /**
+   * @param Post $post
+   *
+   * @return Illuminate\View\View
+   */
+  public function detail(Post $post): View {
     return view('post', [
       'title' => 'Single Post',
       'post' => $post,
-      'slug' => $post['slug'],
+      'slug' => $post->excerpt,
     ]);
   }
 }
