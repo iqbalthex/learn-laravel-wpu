@@ -19,6 +19,10 @@ class PostController extends Controller
       'posts' => Post::latest()->get(),
     ];
 
+    if ($data['posts']->count()) {
+      $data['p'] = $data['posts'][0];
+    }
+
     return view('posts', $data);
   }
 

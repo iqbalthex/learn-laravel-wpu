@@ -31,9 +31,13 @@ class CategoryController extends Controller
       'title' => $category->name,
       'active' => 'categories',
       'header' => "Post by Category: {$category->name}",
-      'posts' => $category->posts->load('category', 'author'),
+      'posts' => $category->posts,
       'category' => $category->name,
     ];
+
+    if ($data['posts']->count()) {
+      $data['p'] = $data['posts'][0];
+    }
 
     return view('posts', $data);
   }

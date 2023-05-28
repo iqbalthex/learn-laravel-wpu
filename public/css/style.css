@@ -1,3 +1,7 @@
 body {
   background: #acb;
 }
+
+a {
+  text-decoration: none;
+}
