@@ -14,8 +14,9 @@ class PostController extends Controller
   public function index(): View {
     $data = [
       'title' => 'Posts',
-      'title_heading' => 'Halaman Blog Posts',
-      'posts' => Post::with('author', 'category')->latest()->get(),
+      'active' => 'posts',
+      'header' => 'All Posts',
+      'posts' => Post::latest()->get(),
     ];
 
     return view('posts', $data);
@@ -29,6 +30,7 @@ class PostController extends Controller
   public function detail(Post $post): View {
     return view('post', [
       'title' => 'Single Post',
+      'active' => 'posts',
       'post' => $post,
       'slug' => $post->excerpt,
     ]);

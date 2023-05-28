@@ -21,6 +21,6 @@
   <p>{{ $excerpt }}</p>
   <a href="{{ route('posts.detail', $slug) }}"
     class="text-decoration-none text-dark fw-bold">
-    Read more
+    Read more...
   </a>
 </article>

@@ -14,6 +14,7 @@ class CategoryController extends Controller
   public function index(): View {
     $data = [
       'title' => 'Post Category',
+      'active' => 'categories',
       'categories' => Category::all(),
     ];
 
@@ -28,7 +29,8 @@ class CategoryController extends Controller
   public function posts(Category $category): View {
     $data = [
       'title' => $category->name,
-      'title_heading' => "Post by Category: {$category->name}",
+      'active' => 'categories',
+      'header' => "Post by Category: {$category->name}",
       'posts' => $category->posts->load('category', 'author'),
       'category' => $category->name,
     ];

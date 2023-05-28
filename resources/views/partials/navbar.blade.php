@@ -7,21 +7,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ $title === 'Home' ? 'active' : ''}}"
+          <a class="nav-link {{ $active === 'home' ? 'active' : ''}}"
             href="{{ route('home') }}">
             Home
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $title === 'About' ? 'active' : ''}}"
+          <a class="nav-link {{ $active === 'about' ? 'active' : ''}}"
             href="{{ route('about') }}">
             About
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $title === 'Blog' ? 'active' : ''}}"
+          <a class="nav-link {{ $active === 'posts' ? 'active' : ''}}"
             href="{{ route('posts') }}">
             Blog
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ $active === 'categories' ? 'active' : ''}}"
+            href="{{ route('categories') }}">
+            Categories
           </a>
         </li>
       </ul>

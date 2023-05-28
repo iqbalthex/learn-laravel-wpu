@@ -8,7 +8,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-  $data['title'] = 'Home';
+  $data = [
+    'title' => 'Home',
+    'active' => 'home',
+  ];
 
   return view('home', $data);
 })->name('home');
@@ -19,6 +22,7 @@ Route::get('/about', function () {
     'email' => 'iqbalariem232@gmail.com',
     'image' => 'ru.jpg',
     'title' => 'About',
+    'active' => 'about',
   ]);
 })->name('about');
 
@@ -39,7 +43,7 @@ Route::controller(CategoryController::class)
 Route::get('/authors/{author:username}', function (User $author) {
   return view('posts', [
     'title' => 'User Posts',
-    'title_heading' => "Post by Author: {$author->name}",
+    'header' => "Post by Author: {$author->name}",
     'posts' => $author->posts->load('category', 'author'),
   ]);
 })->name('authors.posts');
