@@ -11,12 +11,12 @@
     </h3>
     <p>
       <span>By.</span>
-      <a href="{{ route('authors.posts' , $authorUsername) }}"
+      <a href="{{ route('posts', ['author' => $authorUsername]) }}"
         class="text-decoration-non text-danger fw-bold">
         {{ $authorName }}
       </a>
       <span>in</span>
-      <a href="{{ route('categories.posts', $categorySlug) }}"
+      <a href="{{ route('posts', ['category' => $categorySlug]) }}"
         class="text-decoration-none text-danger fw-bold">
         {{ $categoryName }}
       </a>

@@ -8,12 +8,12 @@
       <h1>{{ $post->title }}</h1>
       <p>
         By.
-        <a href="{{ route('authors.posts' , $post->author->username) }}"
+        <a href="{{ route('posts', ['author' => $post->author->username]) }}"
           class="text-decoration-none text-danger fw-bold">
           {{ $post->author->name }}
         </a>
         in
-        <a href="{{ route('categories.posts', $post->category->slug) }}"
+        <a href="{{ route('posts', ['category' => $post->category->slug]) }}"
           class="text-decoration-none text-danger fw-bold">
           {{ $post->category->name }}
         </a>

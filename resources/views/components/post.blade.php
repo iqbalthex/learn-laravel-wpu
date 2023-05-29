@@ -2,7 +2,7 @@
   <div class="card">
     <div class="position-absolute px-3 py-2"
       style="background-color: rgba(0, 0, 0, .6)">
-      <a href="{{ route('categories.posts', $categorySlug) }}"
+      <a href="{{ route('posts', ['category' => $categorySlug]) }}"
         class="text-decoration-none text-white fw-bold">
         {{ $categoryName }}
       </a>
@@ -19,12 +19,12 @@
       </h5>
       <p>
         <span>By.</span>
-        <a href="{{ route('authors.posts' , $authorUsername) }}"
+        <a href="{{ route('posts', ['author' => $authorUsername]) }}"
           class="text-decoration-none text-danger fw-bold">
           {{ $authorName }}
         </a>
         <span>in</span>
-        <a href="{{ route('categories.posts', $categorySlug) }}"
+        <a href="{{ route('posts', ['category' => $categorySlug]) }}"
           class="text-decoration-none text-danger fw-bold">
           {{ $categoryName }}
         </a>

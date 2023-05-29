@@ -37,13 +37,5 @@ Route::controller(CategoryController::class)
   ->prefix('/categories')->name('categories')
   ->group(function () {
     Route::get('/', 'index');
-    Route::get('/{category:slug}', 'posts')->name('.posts');
+    // Route::get('/{category:slug}', 'posts')->name('.posts');
 });
-
-Route::get('/authors/{author:username}', function (User $author) {
-  return view('posts', [
-    'title' => 'User Posts',
-    'header' => "Post by Author: {$author->name}",
-    'posts' => $author->posts->load('category', 'author'),
-  ]);
-})->name('authors.posts');
