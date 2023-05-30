@@ -30,7 +30,13 @@
             Categories
           </a>
         </li>
-      </ul>
+      </ul class="navbar-nav">
+        <li class="nav-link">
+          <a href="{{ route('login') }}" class="nav-link ms-auto text-white">
+            Sign in
+          </a>
+        </li>
+      <ul>
     </div>
   </div>
 </nav>

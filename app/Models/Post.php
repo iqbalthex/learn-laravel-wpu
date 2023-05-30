@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\ {
   Factories\HasFactory,
   Builder as Query,
   Model,
-  Relations\BelongsTo
+  Relations\BelongsTo,
 };
 
 class Post extends Model

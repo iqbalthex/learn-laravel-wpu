@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{
   Category,
   Post,
-  User
+  User,
 };
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -18,25 +18,25 @@ class PostController extends Controller
    */
   public function index(Request $request): View {
     $title = '';
-    if (request('category')) {
-      $category = Category::firstWhere('slug', request('category'));
-      $title = "in $category->name";
+
+    if ($category = request('category')) {
+      $category = Category::firstWhere('slug', $category)->name;
+      $title = "in $category";
     }
 
-    if (request('author')) {
-      $author = User::firstWhere('username', request('author'));
-      $title = "by $author->name";
+    if ($author = request('author')) {
+      $author = User::firstWhere('username', $author)->name;
+      $title = "by $author";
     }
 
     $data = [
-      'title' => "All Posts $title",
       'active' => 'posts',
+      'title' => "All Posts $title",
+      'posts' => Post::latest()
+        ->filter(request(['search', 'category', 'author']))
+        ->paginate(7)
+        ->withQueryString();
     ];
-
-    $data['posts'] = Post::latest()
-      ->filter(request(['search', 'category', 'author']))
-      ->paginate(7)
-      ->withQueryString();
 
     if ($data['posts']->count()) {
       $data['p'] = $data['posts'][0];
@@ -53,8 +53,8 @@ class PostController extends Controller
     
 
     return view('post', [
-      'title' => 'Single Post',
       'active' => 'posts',
+      'title' => 'Single Post',
       'post' => $post,
       'slug' => $post->excerpt,
     ]);

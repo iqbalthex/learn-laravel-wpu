@@ -3,11 +3,8 @@
 use App\Http\Controllers\{
   PostController,
   CategoryController,
-};
-use App\Models\{
-  Category,
-  Post,
-  User
+  LoginController,
+  RegisterController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +35,6 @@ Route::controller(PostController::class)
 });
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
