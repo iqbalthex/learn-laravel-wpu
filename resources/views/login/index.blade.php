@@ -4,6 +4,14 @@
 
 <div class="row justify-content-center">
   <div class="col-md-5">
+    @if (session()->has('alert'))
+      <div class="alert alert-{{ session('alert')['color'] }}
+        alert-dismissible fade show text-center" role="alert">
+        {{ session('alert')['message'] }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    @endif
+
     <main class="form-signin m-auto">
       <h2 class="mb-3 fw-normal text-center">Sign-in Form</h2>
 
