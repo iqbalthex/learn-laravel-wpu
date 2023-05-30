@@ -22,8 +22,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * @param Post $post
-   *
+   * @param  App\Models\Category  $category
    * @return Illuminate\View\View
    */
   public function posts(Category $category): View {

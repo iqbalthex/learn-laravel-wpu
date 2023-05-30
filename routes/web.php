@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\User;
+use App\Http\Controllers\{
+  PostController,
+  CategoryController,
+};
+use App\Models\{
+  Category,
+  Post,
+  User
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,9 +37,4 @@ Route::controller(PostController::class)
   Route::get('/{post:slug}', 'detail')->name('.detail');
 });
 
-Route::controller(CategoryController::class)
-  ->prefix('/categories')->name('categories')
-  ->group(function () {
-    Route::get('/', 'index');
-    // Route::get('/{category:slug}', 'posts')->name('.posts');
-});
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
