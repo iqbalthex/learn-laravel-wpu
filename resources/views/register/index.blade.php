@@ -9,7 +9,9 @@
 
       <form action="{{ route('register') }}" method="post">
         @csrf
-        <div class="form-floating">
+        <x-form.input name="name" label="Name" />
+
+        {{--<div class="form-floating">
           <input
             type="text" class="form-control
             @error('name') is-invalid @enderror"
@@ -19,7 +21,7 @@
           @error('name')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
-        </div>
+        </div>--}}
 
         <div class="form-floating">
           <input

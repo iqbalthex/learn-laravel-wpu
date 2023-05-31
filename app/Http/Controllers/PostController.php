@@ -35,7 +35,7 @@ class PostController extends Controller
       'posts' => Post::latest()
         ->filter(request(['search', 'category', 'author']))
         ->paginate(7)
-        ->withQueryString();
+        ->withQueryString(),
     ];
 
     if ($data['posts']->count()) {

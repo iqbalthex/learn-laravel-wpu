@@ -29,7 +29,11 @@ class RegisterController extends Controller {
   public function store(UserRequest $request): RedirectResponse {
     $data = $request->validated();
 
-    User::create($data);
+    // User::create($data)
+
+    if (true) {
+      return back();//->withErrors('errors', ['name' => 'tes']);
+    }
 
     $this->setAlert('success', 'Registration success!');
 

@@ -30,7 +30,6 @@
   {{ $posts->links() }}
 </div>
 
-
 @isset ($p)
   <x-post-hero
     category-name="{{ $p->category->name }}"
@@ -44,17 +43,7 @@
 
   <div class="container">
     <div class="row">
-      @foreach ($posts->skip(1) as $post)
-        <x-post
-          category-name="{{ $post->category->name }}"
-          category-slug="{{ $post->category->slug }}"
-          slug="{{ $post->slug }}"
-          title="{{ $post->title }}"
-          excerpt="{{ $post->excerpt }}"
-          author-name="{{ $post->author->name }}"
-          author-username="{{ $post->author->username }}"
-          created-at="{{ $post->created_at->diffForHumans() }}" />
-      @endforeach
+      @each('components.post', $posts->skip(1), 'post')
     </div>
   </div>
 @else

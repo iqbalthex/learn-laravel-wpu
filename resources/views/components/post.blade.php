@@ -2,36 +2,36 @@
   <div class="card">
     <div class="position-absolute px-3 py-2"
       style="background-color: rgba(0, 0, 0, .6)">
-      <a href="{{ route('posts', ['category' => $categorySlug]) }}"
+      <a href="{{ route('posts', ['category' => $post->category->slug]) }}"
         class="text-decoration-none text-white fw-bold">
-        {{ $categoryName }}
+        {{ $post->category->name }}
       </a>
     </div>
-    <img src="https://source.unsplash.com/400x300?{{ $categoryName }}"
-      alt="{{ $categoryName }}"
+    <img src="https://source.unsplash.com/400x300?{{ $post->category->name }}"
+      alt="{{ $post->category->name }}"
       class="card-img-top" />
     <div class="card-body">
       <h5 class="card-title">
-        <a href="{{ route('posts.detail', $slug) }}"
+        <a href="{{ route('posts.detail', $post->slug) }}"
           class="text-decoration-none text-dark">
-          {{ $title }}
+          {{ $post->title }}
         </a>
       </h5>
       <p>
         <span>By.</span>
-        <a href="{{ route('posts', ['author' => $authorUsername]) }}"
+        <a href="{{ route('posts', ['author' => $post->author->username]) }}"
           class="text-decoration-none text-danger fw-bold">
-          {{ $authorName }}
+          {{ $post->author->name }}
         </a>
         <span>in</span>
-        <a href="{{ route('posts', ['category' => $categorySlug]) }}"
+        <a href="{{ route('posts', ['category' => $post->category->slug]) }}"
           class="text-decoration-none text-danger fw-bold">
-          {{ $categoryName }}
+          {{ $post->category->name }}
         </a>
-        <small>{{ $createdAt }}</small>
+        <small>{{ $post->created_at }}</small>
       </p>
-      <p class="card-text">{{ $excerpt }}</p>
-      <a href="{{ route('posts.detail', $slug) }}"
+      <p class="card-text">{{ $post->excerpt }}</p>
+      <a href="{{ route('posts.detail', $post->slug) }}"
         class="btn btn-primary">
         Read more...
       </a>

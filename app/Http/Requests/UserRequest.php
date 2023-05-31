@@ -6,11 +6,18 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest {
   /**
+   * Indicates if the validator should stop on the first rule failure.
+   *
+   * @var bool $stopOnFirstFailure
+   */
+  protected $stopOnFirstFailure = true;
+
+  /**
    * Determine if the user is authorized to make this request.
    */
-  public function authorize(): bool {
-    return false;
-  }
+  // public function authorize(): bool {
+    // return false;
+  // }
 
   /**
    * Get the validation rules that apply to the request.
@@ -20,7 +27,7 @@ class UserRequest extends FormRequest {
   public function rules(): array {
     return [
       'name' => 'required|max:255',
-      'email' => 'required|email:dns|unique:users',
+      // 'email' => 'required|email:dns|unique:users',
       'username' => 'required|min:3|max:255',
       'password' => 'required|min:6|max:255',
     ];
