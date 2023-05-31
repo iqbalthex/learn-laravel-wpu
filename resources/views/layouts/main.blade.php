@@ -10,6 +10,7 @@
 <link type="text/css" rel="stylesheet" href="{{ route('home') }}/css/style.css" />
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script type="text/javascript" src="{{ route('home') }}/js/script.js" defer></script>
 
 <title>WPU - Blog | {{ $title }}</title>
 

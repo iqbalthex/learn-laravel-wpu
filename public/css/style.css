@@ -22,3 +22,31 @@ a {
 .form-signin input[type="password"] {
   margin-bottom: 10px;
 }
+
+.alert{
+  position: absolute;
+  width: 100%;
+}
+
+.alert.slide-up {
+  animation: slide-up 1s ease-in 1s forwards;
+}
+
+.alert.slide-down {
+  animation: slide-down 1s ease-out;
+}
+
+
+@keyframes slide-up {
+  100% {
+    opacity: 0;
+    transform: translateY(-50vh);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-50vh);
+  }
+}

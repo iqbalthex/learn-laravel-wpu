@@ -16,7 +16,7 @@
         <x-form.input name="email" label="Email" type="email" />
         <x-form.input name="password" label="Password" type="password" />
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
       </form>
 
       <p class="text-center mt-2">
