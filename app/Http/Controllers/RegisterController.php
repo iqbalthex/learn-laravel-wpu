@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
+use App\Http\Requests\UserRequest;
+use Illuminate\{
+  Http\RedirectResponse,
+  Http\Request,
+  View\View
+};
 
 class RegisterController extends Controller {
   /**
@@ -13,9 +16,6 @@ class RegisterController extends Controller {
    */
   private array $alert;
 
-  /**
-   * @return Illuminate\View\View
-   */
   public function index(): View {
     return view('register.index', [
       'active' => 'register',
@@ -25,18 +25,11 @@ class RegisterController extends Controller {
 
   /**
    * @param  Illuminate\Http\Request $request
-   *
-   * @return Illuminate\Http\RedirectResponse
    */
-  public function store(Request $request): RedirectResponse {
-    $validatedData = $request->validate([
-      'name'     => 'required|max:255',
-      'username' => 'required|min:3|max:255',
-      'email'    => 'required|email:dns|unique:users',
-      'password' => 'required|min:6|max:255',
-    ]);
+  public function store(UserRequest $request): RedirectResponse {
+    $data = $request->validated();
 
-    User::create($validatedData);
+    User::create($data);
 
     $this->setAlert('success', 'Registration success!');
 

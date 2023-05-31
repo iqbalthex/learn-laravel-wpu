@@ -8,9 +8,6 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-  /**
-   * @return Illuminate\View\View
-   */
   public function index(): View {
     $data = [
       'title' => 'Post Category',
@@ -22,8 +19,7 @@ class CategoryController extends Controller
   }
 
   /**
-   * @param  App\Models\Category  $category
-   * @return Illuminate\View\View
+   * @param  App\Models\Category $category
    */
   public function posts(Category $category): View {
     $data = [
