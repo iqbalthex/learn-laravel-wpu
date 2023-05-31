@@ -6,8 +6,10 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class CategoryController extends Controller
-{
+class CategoryController extends Controller {
+  /**
+   * Show all categories.
+   */
   public function index(): View {
     $data = [
       'title' => 'Post Category',
@@ -19,6 +21,8 @@ class CategoryController extends Controller
   }
 
   /**
+   * Show all posts in selected category.
+   *
    * @param  App\Models\Category $category
    */
   public function posts(Category $category): View {
@@ -30,6 +34,7 @@ class CategoryController extends Controller
       'category' => $category->name,
     ];
 
+    // Get first post.
     if ($data['posts']->count()) {
       $data['p'] = $data['posts'][0];
     }

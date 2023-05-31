@@ -38,11 +38,14 @@ class RegisterController extends Controller {
     $data = $request->validated();
 
     // Store the data, back to registration form when failed.
-    if (!User::create($data)) return back();
+    if (!User::create($data)) {
+      $this->setAlert('danger', 'Registration failed!');
+      return back()->with('alert', $this->alert);
+    }
 
     $this->setAlert('success', 'Registration success!');
 
-    // Redirect to login form page when success and send alert data.
+    // Redirect to login form page when success.
     return to_route('login')->with('alert', $this->alert);
   }
 

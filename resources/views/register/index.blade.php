@@ -4,8 +4,10 @@
 
 <div class="row justify-content-center">
   <div class="col-lg-5">
+    <x-alert />
+
     <main class="form-signin m-auto">
-      <h2 class="mb-3 fw-normal text-center">Registration Form</h2>
+      <h2 class="mb-3 text-center">Registration Form</h2>
 
       <form action="{{ route('register') }}" method="post">
         @csrf

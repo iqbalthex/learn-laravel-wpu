@@ -3,22 +3,16 @@
 @section('container')
 
 <div class="row justify-content-center">
-  <div class="col-md-5">
-    @if (session()->has('alert'))
-      <div class="alert alert-{{ session('alert')['color'] }}
-        alert-dismissible fade show text-center" role="alert">
-        {{ session('alert')['message'] }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-    @endif
+  <div class="col-lg-5">
+    <x-alert />
 
     <main class="form-signin m-auto">
-      <h2 class="mb-3 fw-normal text-center">Sign-in Form</h2>
+      <h2 class="mb-3 text-center">Sign-in Form</h2>
 
-      <form action="" method="post">
+      <form action="{{ route('login') }}" method="post">
         @csrf
-        <x-form.input name="username" label="Username"  />
-        <x-form.input type="password" name="password" label="Password" />
+        <x-form.input name="username" label="Username" />
+        <x-form.input name="password" label="Password" type="password" />
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       </form>

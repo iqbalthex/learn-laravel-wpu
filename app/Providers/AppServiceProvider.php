@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
    * Bootstrap any application services.
    */
   public function boot(): void {
-    Blade::anonymousComponentPath(resource_path('views/components'));
+    Blade::anonymousComponentPath(resource_path('views/anonymous-components'));
     Paginator::useBootstrap();
   }
 }

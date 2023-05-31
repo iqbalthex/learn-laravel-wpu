@@ -13,12 +13,15 @@ use Illuminate\View\View;
 class PostController extends Controller
 {
   /**
+   * Show all posts.
+   *
    * @param  Illuminate\Http\Request $request
    * @return Illuminate\View\View
    */
   public function index(Request $request): View {
     $title = '';
 
+    // Set title.
     if ($category = request('category')) {
       $category = Category::firstWhere('slug', $category)->name;
       $title = "in $category";
@@ -38,6 +41,7 @@ class PostController extends Controller
         ->withQueryString(),
     ];
 
+    // Get first post.
     if ($data['posts']->count()) {
       $data['p'] = $data['posts'][0];
     }    
@@ -46,6 +50,8 @@ class PostController extends Controller
   }
 
   /**
+   * Show detail of post.
+   *
    * @param  App\Models\Post      $post
    * @return Illuminate\View\View
    */
