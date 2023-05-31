@@ -3,7 +3,7 @@
     @error($name) is-invalid @enderror"
     @error($name) autofocus @enderror
     type="{{ $type }}" value="{{ old($name) }}"
-    name="{{ $name }}" placeholder="{{ $label }}" />
+    name="{{ $name }}" placeholder="{{ $label }}" require />
   <label for="floatingInput">{{ $label }}</label>
   @error($name)
     <div class="invalid-feedback mb-1">{{ $message }}</div>

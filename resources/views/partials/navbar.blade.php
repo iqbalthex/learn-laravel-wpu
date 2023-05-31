@@ -30,12 +30,31 @@
             Categories
           </a>
         </li>
-      </ul class="navbar-nav">
-        <li class="nav-link">
-          <a href="{{ route('login') }}" class="nav-link ms-auto text-white">
-            Sign in
-          </a>
-        </li>
+      </ul>
+      <ul class="navbar-nav">
+        @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Welcome back, {{ auth()->user()->name }}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="{{ route('logout') }}" method="post">
+                  @csrf
+                  <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        @else
+          <li class="nav-link">
+            <a href="{{ route('login') }}" class="nav-link ms-auto text-white">
+              Sign in
+            </a>
+          </li>
+        @endauth
       <ul>
     </div>
   </div>

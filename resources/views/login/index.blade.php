@@ -11,7 +11,7 @@
 
       <form action="{{ route('login') }}" method="post">
         @csrf
-        <x-form.input name="username" label="Username" />
+        <x-form.input name="username" label="Username" type="text" />
         <x-form.input name="password" label="Password" type="password" />
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>

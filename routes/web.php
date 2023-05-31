@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\{
-  PostController,
   CategoryController,
+  DashboardController,
   LoginController,
+  PostController,
   RegisterController,
 };
 use Illuminate\Support\Facades\Route;
@@ -28,16 +29,22 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::controller(PostController::class)
-  ->prefix('/posts')->name('posts')
-  ->group(function () {
+->prefix('/posts')->name('posts')
+->group(function () {
   Route::get('/', 'index');
   Route::get('/{post:slug}', 'detail')->name('.detail');
 });
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login.form');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
+Route::controller(LoginController::class)
+->group(function () {
+  Route::get('/login', 'index')->name('login.form')->middleware('guest');
+  Route::post('/login', 'login')->name('login');
+  Route::post('/logout', 'logout')->name('logout');
+});
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register.form')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
