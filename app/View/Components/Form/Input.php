@@ -16,16 +16,6 @@ class Input extends Component {
     public $label = '',
   ) {}
 
-  public function isInvalid() {
-    $error = session('errors')?->messages();
-    if (is_null($error)) return;
-
-    $this->message = $error[$this->name][0] ?? null;
-    if (is_null($this->message)) return;
-
-    return 'is-invalid';
-  }
-
   /**
    * Get the view / contents that represent the component.
    */

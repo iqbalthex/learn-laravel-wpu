@@ -36,8 +36,8 @@ Route::controller(PostController::class)
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login.form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');

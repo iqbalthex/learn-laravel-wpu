@@ -10,53 +10,9 @@
       <form action="{{ route('register') }}" method="post">
         @csrf
         <x-form.input name="name" label="Name" />
-
-        {{--<div class="form-floating">
-          <input
-            type="text" class="form-control
-            @error('name') is-invalid @enderror"
-            name="name" placeholder="Name"
-            value="{{ old('name') }}" />
-          <label for="floatingInput">Name</label>
-          @error('name')
-            <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-        </div>--}}
-
-        <div class="form-floating">
-          <input
-            type="text" class="form-control
-            @error('username') is-invalid @enderror"
-            name="username" placeholder="Username"
-            value="{{ old('username') }}" />
-          <label for="floatingInput">Username</label>
-          @error('username')
-            <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <div class="form-floating">
-          <input
-            type="email" class="form-control
-            @error('email') is-invalid @enderror"
-            name="email" placeholder="Email"
-            value="{{ old('email') }}" />
-          <label for="floatingInput">Email</label>
-          @error('email')
-            <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-        </div>
-
-        <div class="form-floating">
-          <input
-            type="password" class="form-control
-            @error('password') is-invalid @enderror"
-            name="password" placeholder="Password" />
-          <label for="floatingInput">Password</label>
-          @error('password')
-            <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-        </div>
+        <x-form.input name="username" label="Username" />
+        <x-form.input name="email" label="Email" type="email" />
+        <x-form.input name="password" label="Password" type="password" />
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       </form>
