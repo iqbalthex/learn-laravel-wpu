@@ -37,13 +37,17 @@ Route::controller(PostController::class)
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::view('/dashboard', 'dashboard.index', [
+  'title' => 'Dashboard',
+  'active' => 'dashboard',
+])->name('dashboard')->middleware('auth');
 
 Route::controller(LoginController::class)
 ->group(function () {
   Route::get('/login', 'index')->name('login.form')->middleware('guest');
   Route::post('/login', 'login')->name('login');
-  Route::post('/logout', 'logout')->name('logout');
+  Route::any('/logout', 'logout')->name('logout')->middleware('auth');
 });
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form')->middleware('guest');
