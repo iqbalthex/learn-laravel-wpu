@@ -7,25 +7,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ $active === 'home' ? 'active' : ''}}"
+          <a class="nav-link {{ Request::routeIs('home') ? 'active' : '' }}"
             href="{{ route('home') }}">
             Home
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $active === 'about' ? 'active' : ''}}"
+          <a class="nav-link {{ Request::routeIs('about') ? 'active' : ''}}"
             href="{{ route('about') }}">
             About
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $active === 'posts' ? 'active' : ''}}"
+          <a class="nav-link {{ Request::routeIs('posts') ? 'active' : ''}}"
             href="{{ route('posts') }}">
             Blog
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $active === 'categories' ? 'active' : ''}}"
+          <a class="nav-link {{ Request::routeIs('categories') ? 'active' : ''}}"
             href="{{ route('categories') }}">
             Categories
           </a>

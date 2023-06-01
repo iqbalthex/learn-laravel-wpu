@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\ {
   Relations\BelongsTo,
 };
 
-class Post extends Model
-{
+class Post extends Model {
   use HasFactory;
 
   // protected $fillable = ['title', 'excerpt', 'body'];
@@ -20,6 +19,13 @@ class Post extends Model
    */
   protected $guarded = ['id'];
   protected $with = ['author', 'category'];
+
+  /**
+   * Set the default field for route model binding.
+   */
+  public function getRouteKeyName(): string {
+    return 'slug';
+  }
 
   /**
    * @return Illuminate\Database\Eloquent\Relations\BelongsTo

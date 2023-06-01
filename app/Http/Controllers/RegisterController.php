@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
-use Illuminate\{
+use Illuminate\ {
   Http\RedirectResponse,
   Http\Request,
   View\View

@@ -44,9 +44,7 @@ Route::view('/dashboard', 'dashboard.index', [
   'active' => 'dashboard',
 ])->name('dashboard')->middleware('auth');
 
-Route::resource('/dashboard/posts', DashboardPostController::class)
-  // ->name('dashboard.posts')
-  ->middleware('auth');
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 Route::controller(LoginController::class)
 ->group(function () {
