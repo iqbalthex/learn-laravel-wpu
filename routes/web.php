@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\{
   CategoryController,
-  DashboardController,
+  // DashboardController,
+  DashboardPostController,
   LoginController,
   PostController,
   RegisterController,
@@ -42,6 +43,10 @@ Route::view('/dashboard', 'dashboard.index', [
   'title' => 'Dashboard',
   'active' => 'dashboard',
 ])->name('dashboard')->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class)
+  // ->name('dashboard.posts')
+  ->middleware('auth');
 
 Route::controller(LoginController::class)
 ->group(function () {
