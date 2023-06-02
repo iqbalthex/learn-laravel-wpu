@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\ {
   Factories\HasFactory,
   Builder as Query,
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\ {
 };
 
 class Post extends Model {
-  use HasFactory;
+  use HasFactory, Sluggable;
 
   // protected $fillable = ['title', 'excerpt', 'body'];
   /**
@@ -19,13 +20,6 @@ class Post extends Model {
    */
   protected $guarded = ['id'];
   protected $with = ['author', 'category'];
-
-  /**
-   * Set the default field for route model binding.
-   */
-  public function getRouteKeyName(): string {
-    return 'slug';
-  }
 
   /**
    * @return Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -59,5 +53,25 @@ class Post extends Model {
     $query->when($filters['author'] ?? false, fn ($query, $author) => $query
       ->whereHas('author', fn ($query) => $query->where('username', $author))
     );
+  }
+
+  /**
+   * Set the default field for route model binding.
+   */
+  public function getRouteKeyName(): string {
+    return 'slug';
+  }
+
+  /**
+   * Return the sluggable configuration array for this model.
+   *
+   * @return array
+   */
+  public function sluggable(): array {
+    return [
+      'slug' => [
+        'source' => 'title',
+      ],
+    ];
   }
 }

@@ -44,6 +44,8 @@ Route::view('/dashboard', 'dashboard.index', [
   'active' => 'dashboard',
 ])->name('dashboard')->middleware('auth');
 
+Route::get('/dashboard/posts/slug', [DashboardPostController::class, 'generateSlug'])
+  ->name('posts.generate-slug')->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 Route::controller(LoginController::class)

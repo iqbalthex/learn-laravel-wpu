@@ -2,14 +2,14 @@
   <div class="position-sticky pt-3 sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}"
+        <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
           href="{{ route('dashboard') }}">
           <span data-feather="home" class="align-text-bottom"></span>
           Dashboard
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}"
+        <a class="nav-link {{ Request::routeIs('posts*') ? 'active' : '' }}"
           href="{{ route('posts.index') }}">
           <span data-feather="file" class="align-text-bottom"></span>
           My Posts

@@ -23,6 +23,10 @@ a {
   margin-bottom: 10px;
 }
 
+trix-editor {
+  background: #fff;
+}
+
 .alert{
   position: absolute;
   width: 100%;

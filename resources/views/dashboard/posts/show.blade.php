@@ -12,17 +12,14 @@
       <h1>{{ $post->title }}</h1>
 
       <div class="d-flex justify-content-between mb-2">
-        <a class="btn btn-primary"
-          href="{{ route('posts.index') }}">
+        <a class="btn btn-primary" href="{{ route('posts.index') }}">
           Back to My Posts
         </a>
         <div>
-          <a class="btn btn-warning"
-            href="{{ route('posts.edit', $post->slug) }}" >
+          <a class="btn btn-warning" href="{{ route('posts.edit', $post->slug) }}" >
             Edit
           </a>
-          <a class="btn btn-danger ms-2"
-            href="{{ route('posts.destroy', $post->slug) }}">
+          <a class="btn btn-danger ms-2" href="{{ route('posts.destroy', $post->slug) }}">
             Delete
           </a>
         </div>
