@@ -1,7 +1,7 @@
 <div class="form-floating">
   <input class="form-control
     @error($name) is-invalid @enderror"
-    @error($name) autofocus @enderror
+    @error($name) autofocus @enderror required
     type="{{ $type }}" value="{{ old($name) }}"
     name="{{ $name }}" placeholder="{{ $label }}" require />
   <label for="floatingInput">{{ $label }}</label>

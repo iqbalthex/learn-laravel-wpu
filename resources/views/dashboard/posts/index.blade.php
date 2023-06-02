@@ -2,6 +2,12 @@
 
 @section ('container')
 
+@if (session()->has('alert'))
+  <div class="alert alert-success" role="alert">
+    Post added.
+  </div>
+@endif
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">My Posts</h1>
 </div>
@@ -38,6 +44,7 @@
               <button class="badge bg-danger border-0" type="submit">Delete</button>
             </form>
           </td>
+          <td>...</td>
         </tr>
       @endforeach
     </tbody>

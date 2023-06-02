@@ -12,7 +12,7 @@
       <h1>{{ $post->title }}</h1>
 
       <div class="d-flex justify-content-between mb-2">
-        <a class="btn btn-primary" href="{{ route('posts.index') }}">
+        <a class="btn btn-secondary" href="{{ route('posts.index') }}">
           Back to My Posts
         </a>
         <div>
