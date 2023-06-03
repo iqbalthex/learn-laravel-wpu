@@ -37,18 +37,18 @@ class DashboardPostController extends Controller {
    * Store a newly created resource in storage.
    */
   public function store(Request $request) {
-    $data = array_merge($request->validate([
+    $data = $request->validate([
       'title' => 'required|max:255',
       'slug' => 'required|unique:posts',
       'body' => 'required',
       'category_id' => 'required',
-    ]), [
-      'user_id' => auth()->user()->id,
-      'excerpt' => Str::limit(strip_tags($request->body), 100),
     ]);
 
+    $data['user_id'] = auth()->user()->id;
+    $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
+
     if (Post::create($data)) {
-      $this->setAlert('success', 'Post have been added.');
+      $this->setAlert('success', 'Create post success.');
       return to_route('posts.index')->with('alert', $this->alert);
     }
 
@@ -70,21 +70,54 @@ class DashboardPostController extends Controller {
    * Show the form for editing the specified resource.
    */
   public function edit(Post $post): View {
-    
+    return view('dashboard.posts.edit', [
+      'title' => 'Edit post',
+      'post' => $post,
+      'categories' => Category::all(),
+      'category_id' => old('category_id', $post->category->id),
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    */
   public function update(Request $request, Post $post) {
-    //
+    $rules = [
+      'title' => 'required|max:255',
+      'body' => 'required',
+      'category_id' => 'required',
+    ];
+
+    if ($request->slug != $post->slug) {
+      $rules['slug'] = 'required|unique:posts';
+    }
+
+    $data = $request->validate($rules);
+
+    $data['user_id'] = auth()->user()->id;
+    $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
+
+    $updated = Post::where('id', $post->id)->update($data);
+    if ($updated) {
+      $this->setAlert('success', 'Edit post success.');
+      return to_route('posts.index')->with('alert', $this->alert);
+    }
+
+    $this->setAlert('danger', 'Edit post failed.');
+    return back()->with('alert', $this->alert);
   }
 
   /**
    * Remove the specified resource from storage.
    */
   public function destroy(Post $post) {
-    //
+    if (Post::destroy($post->id)) {
+      $this->setAlert('success', 'Post have been deleted.');
+      return to_route('posts.index')->with('alert', $this->alert);
+    }
+
+    $this->setAlert('danger', 'Delete post failed.');
+    return back()->with('alert', $this->alert);
   }
 
   /**

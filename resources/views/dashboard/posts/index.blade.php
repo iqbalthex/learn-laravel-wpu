@@ -3,8 +3,8 @@
 @section ('container')
 
 @if (session()->has('alert'))
-  <div class="alert alert-success" role="alert">
-    Post added.
+  <div class="alert alert-{{ session('alert')['color'] }} mt-3" role="alert" style="width: calc(8/12*100%)">
+  {{ session('alert')['message'] }}
   </div>
 @endif
 
@@ -37,11 +37,14 @@
             </a>
             <a href="{{ route('posts.edit', $post->slug) }}" class="badge bg-warning">
               Edit
-            </a>            
+            </a>
             <form action="{{ route('posts.destroy', $post->slug) }}" method="post" class="d-inline">
               @csrf
-              <input type="hidden" name="_method" value="delete" />
-              <button class="badge bg-danger border-0" type="submit">Delete</button>
+              @method('DELETE')
+              <button class="badge bg-danger border-0" type="submit"
+                onclick="return confirm('Are you sure?')">
+                Delete
+              </button>
             </form>
           </td>
           <!--td>

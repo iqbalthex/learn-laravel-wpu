@@ -19,9 +19,14 @@
           <a class="btn btn-warning" href="{{ route('posts.edit', $post->slug) }}" >
             Edit
           </a>
-          <a class="btn btn-danger ms-2" href="{{ route('posts.destroy', $post->slug) }}">
-            Delete
-          </a>
+          <form action="{{ route('posts.destroy', $post->slug) }}" method="post" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger" type="submit"
+              onclick="return confirm('Are you sure?')">
+              Delete
+            </button>
+          </form>
         </div>
       </div>
 
