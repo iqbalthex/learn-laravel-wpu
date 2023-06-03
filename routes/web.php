@@ -44,7 +44,8 @@ Route::view('/dashboard', 'dashboard.index', [
   'active' => 'dashboard',
 ])->name('dashboard')->middleware('auth');
 
-Route::get('/dashboard/posts/generate-slug', [DashboardPostController::class, 'generateSlug'])
+Route::get('/dashboard/posts/generate-slug/{title?}',
+  [DashboardPostController::class, 'generateSlug'])
   ->name('posts.generate-slug')->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
@@ -52,7 +53,7 @@ Route::controller(LoginController::class)
 ->group(function () {
   Route::get('/login', 'index')->name('login.form')->middleware('guest');
   Route::post('/login', 'login')->name('login');
-  Route::any('/logout', 'logout')->name('logout')->middleware('auth');
+  Route::get('/logout', 'logout')->name('logout')->middleware('auth');
 });
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form')->middleware('guest');

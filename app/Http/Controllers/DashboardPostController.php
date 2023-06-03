@@ -89,9 +89,11 @@ class DashboardPostController extends Controller {
 
   /**
    * Generating slug from title.
+   *
+   * @param string $title
    */
-  public function generateSlug(Request $request): JsonResponse {
-    $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+  public function generateSlug(string $title=''): JsonResponse {
+    $slug = SlugService::createSlug(Post::class, 'slug', $title);
     return response()->json([ 'slug' => $slug ]);
   }
 

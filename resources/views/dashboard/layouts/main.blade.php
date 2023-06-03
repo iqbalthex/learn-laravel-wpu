@@ -40,7 +40,7 @@ const title = document.getElementById("title");
 const slug = document.getElementById("slug");
 
 title.addEventListener("change", async () => {
-  const response = await fetch(`{{ route('posts.generate-slug') }}?title=${title.value}`);
+  const response = await fetch(`{{ route('posts.generate-slug') }}/${title.value}`);
   const data = await response.json();
   slug.value = data.slug;
 });

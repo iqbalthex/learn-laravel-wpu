@@ -18,7 +18,7 @@
   </a>
   <table class="table table-striped table-sm">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th scope="col">#</th>
         <th scope="col">Title</th>
         <th scope="col">Category</th>
@@ -27,9 +27,9 @@
     </thead>
     <tbody>
       @foreach ($posts as $post)
-        <tr>
+        <tr class="text-center">
           <td>{{ $loop->iteration }}</td>
-          <td>{{ $post->title }}</td>
+          <td class="text-start">{{ $post->title }}</td>
           <td>{{ $post->category->name }}</td>
           <td>
             <a href="{{ route('posts.show', $post->slug) }}" class="badge bg-primary">
@@ -44,7 +44,9 @@
               <button class="badge bg-danger border-0" type="submit">Delete</button>
             </form>
           </td>
-          <td>...</td>
+          <!--td>
+            <span class="badge rounded-pill text-bg-secondary">...</span>
+          </td-->
         </tr>
       @endforeach
     </tbody>
