@@ -12,13 +12,6 @@ use Illuminate\ {
 
 class RegisterController extends Controller {
   /**
-   * Alert data used for flash message.
-   *
-   * @var array<string, string> @alert
-   */
-  private array $alert;
-
-  /**
    * Show registration form page.
    */
   public function index(): View {
@@ -47,15 +40,5 @@ class RegisterController extends Controller {
 
     // Redirect to login form page when success.
     return to_route('login')->with('alert', $this->alert);
-  }
-
-  /**
-   * Set alert data.
-   *
-   * @param string $color   Flash message background color.
-   * @param string $message Flash message content.
-   */
-  private function setAlert($color, $message): void {
-    $this->alert = compact('color', 'message');
   }
 }

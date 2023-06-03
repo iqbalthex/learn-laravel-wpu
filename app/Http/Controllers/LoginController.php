@@ -50,8 +50,4 @@ class LoginController extends Controller {
     $this->setAlert('success', 'You\'ve been logged out!');
     return to_route('login')->with('alert', $this->alert);
   }
-
-  private function setAlert($color, $message) {
-    $this->alert = compact('color', 'message');
-  }
 }

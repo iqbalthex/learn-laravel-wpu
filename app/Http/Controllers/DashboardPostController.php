@@ -9,8 +9,6 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class DashboardPostController extends Controller {
-  private array $alert = [];
-
   /**
    * Display a listing of the resource.
    */
@@ -30,6 +28,7 @@ class DashboardPostController extends Controller {
     return view('dashboard.posts.create', [
       'title' => 'Create new post',
       'categories' => Category::all(),
+      'isSelected' => old('category_id') ? 'selected' : '',
     ]);
   }
 
@@ -74,7 +73,7 @@ class DashboardPostController extends Controller {
       'title' => 'Edit post',
       'post' => $post,
       'categories' => Category::all(),
-      'category_id' => old('category_id', $post->category->id),
+      'isSelected' => old('category_id', $post->category->id) ? 'selected' : '',
     ]);
   }
 
@@ -128,15 +127,5 @@ class DashboardPostController extends Controller {
   public function generateSlug(string $title=''): JsonResponse {
     $slug = SlugService::createSlug(Post::class, 'slug', $title);
     return response()->json([ 'slug' => $slug ]);
-  }
-
-  /**
-   * Set alert.
-   *
-   * @param string $color
-   * @param string $message
-   */
-  private function setAlert($color, $message): void {
-    $this->alert = compact('color', 'message');
   }
 }
