@@ -1,7 +1,12 @@
 <div class="card mb-3">
-  <img src="https://source.unsplash.com/900x300?{{ $categoryName }}"
-    alt="{{ $categoryName }}"
-    class="card-img-top" />
+  <img alt="{{ $categoryName }}" class="card-img-top"
+  @if ($image)
+    src="{{ asset('storage/' . $image) }}"
+  @else
+    src="https://source.unsplash.com/900x300?{{ $categoryName }}"
+  @endif
+  />
+
   <div class="card-body text-center">
     <h3 class="card-title">
       <a href="{{ route('posts.detail', $slug) }}"

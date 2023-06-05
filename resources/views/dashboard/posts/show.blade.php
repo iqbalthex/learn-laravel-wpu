@@ -30,9 +30,13 @@
         </div>
       </div>
 
-      <img src="https://source.unsplash.com/800x300?{{ $post->category->name }}"
-        alt="{{ $post->category->name }}"
-        class="img-fluid" />
+      <img alt="{{ $post->category->name }}" class="card-img-top"
+      @if ($post->image)
+        src="{{ asset('storage/' . $post->image) }}"
+      @else
+        src="https://source.unsplash.com/900x300?{{ $post->category->name }}"
+      @endif
+      />
 
       <article class="my-2 fs-5">
         {!! $post->body !!}

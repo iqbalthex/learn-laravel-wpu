@@ -36,6 +36,7 @@
     category-slug="{{ $p->category->slug }}"
     slug="{{ $p->slug }}"
     title="{{ $p->title }}"
+    image="{{ $p->image }}"
     excerpt="{{ $p->excerpt }}"
     author-name="{{ $p->author->name }}"
     author-username="{{ $p->author->username }}"

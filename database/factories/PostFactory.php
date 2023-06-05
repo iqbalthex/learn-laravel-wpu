@@ -24,7 +24,7 @@ class PostFactory extends Factory
       'slug' => fake()->slug(),
       'title' => fake()->sentence(5),
       'excerpt' => fake()->sentence(mt_rand(8,15)),
-      'user_id' => mt_rand(1,3),
+      'user_id' => mt_rand(1,4),
       'category_id' => mt_rand(1,3),
     ];
   }

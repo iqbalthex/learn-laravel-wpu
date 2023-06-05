@@ -7,9 +7,15 @@
         {{ $post->category->name }}
       </a>
     </div>
-    <img src="https://source.unsplash.com/400x300?{{ $post->category->name }}"
-      alt="{{ $post->category->name }}"
-      class="card-img-top" />
+
+    <img alt="{{ $categoryName }}" class="card-img-top"
+    @if ($post->image)
+      src="{{ asset('storage/' . $post->image) }}"
+    @else
+      src="https://source.unsplash.com/900x300?{{ $post->category->name }}"
+    @endif
+    />
+
     <div class="card-body">
       <h5 class="card-title">
         <a href="{{ route('posts.detail', $post->slug) }}"

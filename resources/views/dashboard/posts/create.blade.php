@@ -43,7 +43,10 @@
     <div class="mb-3">
       <label for="image" class="form-label">Thumbnail</label>
       <input type="file" id="image" name="image" value="{{ old('file') }}"
-        class="form-control" />
+        class="form-control @error('image') is-invalid @enderror" />
+      @error('image')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
     </div>
 
     <div class="mb-3">
@@ -51,7 +54,7 @@
       <input type="hidden" id="body" name="body" value="{{ old('body') }}" />
       <trix-editor input="body"></trix-editor>
       @error('body')
-        <p class="text-danger">{{ $message }}</p>
+        <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
     <button type="submit" class="btn btn-primary">Create post</button>

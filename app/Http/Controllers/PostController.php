@@ -44,7 +44,7 @@ class PostController extends Controller
     // Get first post.
     if ($data['posts']->count()) {
       $data['p'] = $data['posts'][0];
-    }    
+    }
 
     return view('posts', $data);
   }
