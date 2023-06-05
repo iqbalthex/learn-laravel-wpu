@@ -43,6 +43,8 @@ class DashboardPostController extends Controller {
       'category_id' => 'required',
     ]);
 
+    dd($request->file('image')->store('post-images'));
+
     $data['user_id'] = auth()->user()->id;
     $data['excerpt'] = Str::limit(strip_tags($request->body), 100);
 
