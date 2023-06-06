@@ -8,13 +8,15 @@
       </a>
     </div>
 
-    <img alt="{{ $categoryName }}" class="card-img-top"
-    @if ($post->image)
-      src="{{ asset('storage/' . $post->image) }}"
-    @else
-      src="https://source.unsplash.com/900x300?{{ $post->category->name }}"
-    @endif
-    />
+    <div style="max-height: 300px; overflow: hidden">
+      <img alt="{{ $post->category->name }}" class="card-img-top"
+      @if ($post->image)
+        src="{{ asset('storage/' . $post->image) }}"
+      @else
+        src="https://source.unsplash.com/900x300?{{ $post->category->name }}"
+      @endif
+      />
+    </div>
 
     <div class="card-body">
       <h5 class="card-title">

@@ -1,11 +1,13 @@
 <div class="card mb-3">
-  <img alt="{{ $categoryName }}" class="card-img-top"
-  @if ($image)
-    src="{{ asset('storage/' . $image) }}"
-  @else
-    src="https://source.unsplash.com/900x300?{{ $categoryName }}"
-  @endif
-  />
+  <div style="max-height: 300px; overflow: hidden">
+    <img alt="{{ $categoryName }}" class="card-img-top"
+    @if ($image)
+      src="{{ asset('storage/' . $image) }}"
+    @else
+      src="https://source.unsplash.com/900x300?{{ $categoryName }}"
+    @endif
+    />
+  </div>
 
   <div class="card-body text-center">
     <h3 class="card-title">

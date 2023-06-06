@@ -18,9 +18,15 @@
           {{ $post->category->name }}
         </a>
       </p>
-      <img src="https://source.unsplash.com/900x300?{{ $post->category->name }}"
-        alt="{{ $post->category->name }}"
-        class="img-fluid" />
+      <div style="max-height: 300px; overflow: hidden">
+        <img alt="{{ $post->category->name }}" class="card-img-top"
+        @if ($post->image)
+          src="{{ asset('storage/' . $post->image) }}"
+        @else
+          src="https://source.unsplash.com/900x300?{{ $post->category->name }}"
+        @endif
+        />
+      </div>
 
       <article class="my-2 fs-5">
         {!! $post->body !!}
