@@ -37,6 +37,9 @@ Route::controller(PostController::class)
 });
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+Route::resource('/dashboard/categories', AdminCategoryController::class)
+  ->except('show')
+  ->middleware('is_admin');
 
 Route::prefix('/dashboard')->middleware('auth')->group(function () {
   Route::view('/', 'dashboard.index', [
@@ -48,8 +51,6 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
     DashboardPostController::class, 'generateSlug'
   ])->name('posts.generate-slug');
 
-  Route::resource('/categories', AdminCategoryController::class)->except('show');
-
   Route::resource('/posts', DashboardPostController::class);
 });
 
@@ -57,7 +58,7 @@ Route::controller(LoginController::class)
 ->group(function () {
   Route::get('/login', 'index')->name('login.form')->middleware('guest');
   Route::post('/login', 'login')->name('login');
-  Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+  Route::match(['GET', 'POST'], '/logout', 'logout')->name('logout')->middleware('auth');
 });
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.form')->middleware('guest');
