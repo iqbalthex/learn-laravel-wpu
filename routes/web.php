@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\{
+  AdminCategoryController,
   CategoryController,
-  // DashboardController,
+  DashboardController,
   DashboardPostController,
   LoginController,
   PostController,
@@ -38,16 +39,16 @@ Route::controller(PostController::class)
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::view('/dashboard', 'dashboard.index', [
-  'title' => 'Dashboard',
-  'active' => 'dashboard',
-])->name('dashboard')->middleware('auth');
+Route::prefix('/dashboard')->middleware('auth')->group(function () {
+  Route::view('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/dashboard/posts/generate-slug/{title?}',
-  [DashboardPostController::class, 'generateSlug'])
-  ->name('posts.generate-slug')->middleware('auth');
-Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+  Route::get('/posts/generate-slug/{title?}',
+    [DashboardPostController::class, 'generateSlug'])
+    ->name('posts.generate-slug');
+
+  Route::resource('/categories', AdminCategoryController::class)->except('show');
+  Route::resource('/posts', DashboardPostController::class);
+});
 
 Route::controller(LoginController::class)
 ->group(function () {

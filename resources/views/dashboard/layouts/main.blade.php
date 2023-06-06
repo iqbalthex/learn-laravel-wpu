@@ -7,8 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="{{ route('home') }}/css/style.css" />
-<link type="text/css" rel="stylesheet" href="{{ route('home') }}/css/dashboard.css" />
+<link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}" />
+<link type="text/css" rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
 <style>
 
 trix-toolbar span[data-trix-button-group="file-tools"] { display: none; }
@@ -49,7 +49,7 @@ document.addEventListener("trix-file-accept", e => e.preventDefault());
 
 </script>
 
-<script type="text/javascript" src="{{ route('home') }}/js/trix@2.0.0/trix.umd.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/trix@2.0.0/trix.umd.min.js') }}"></script>
 
 </body>
 </html>
