@@ -38,7 +38,7 @@
               Welcome back, {{ auth()->user()->name }}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+              <li><a class="dropdown-item" href="{{ route('dashboard') }}">My Dashboard</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <form action="{{ route('logout') }}" method="post">

@@ -9,7 +9,7 @@
 </div>
 
 <div class="col-lg-8">
-  <form action="{{ route('posts.update', $post->slug) }}" method="post" class="mb-5">
+  <form action="{{ route('posts.update', $post->slug) }}" method="post" class="mb-5" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -43,6 +43,24 @@
     </div>
 
     <div class="mb-3">
+      <label for="image" class="form-label">Thumbnail</label>
+      <input type="hidden" name="oldImage" value="{{ $post->image }}" />
+      <input type="file" id="image" name="image" value="{{ old('file') }}"
+        class="form-control @error('image') is-invalid @enderror"
+        onchange="previewImage()" />
+      <div style="max-height: 300px; overflow: hidden">
+        <img class="img-preview img-fluid d-block mt-2"
+          @if ($post->image)
+            src="{{ asset('storage/' . $post->image) }}"
+          @endif
+        />
+      </div>
+      @error('image')
+        <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
       <label for="body" class="form-label">Body</label>
       <input type="hidden" id="body" name="body" value="{{ old('body', $post->body) }}" />
       <trix-editor input="body"></trix-editor>
@@ -56,5 +74,7 @@
     </a>
   </form>
 </div>
+
+<script type="text/javascript" src="{{ asset('js/prev-image.js') }}"></script>
 
 @endsection

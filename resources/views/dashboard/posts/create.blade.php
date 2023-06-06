@@ -43,7 +43,11 @@
     <div class="mb-3">
       <label for="image" class="form-label">Thumbnail</label>
       <input type="file" id="image" name="image" value="{{ old('file') }}"
-        class="form-control @error('image') is-invalid @enderror" />
+        class="form-control @error('image') is-invalid @enderror"
+        onchange="previewImage()" />
+      <div style="max-height: 300px; overflow: hidden">
+        <img class="img-preview img-fluid d-block mt-2" />
+      </div>
       @error('image')
         <div class="invalid-feedback">{{ $message }}</div>
       @enderror
@@ -63,5 +67,7 @@
     </a>
   </form>
 </div>
+
+<script type="text/javascript" src="{{ asset('js/prev-image.js') }}"></script>
 
 @endsection
