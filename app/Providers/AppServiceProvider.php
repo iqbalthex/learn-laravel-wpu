@@ -2,8 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\ {
+  Post,
+  User,
+};
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\ {
+  Blade,
+  Gate,
+};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
   public function boot(): void {
     Blade::anonymousComponentPath(resource_path('views/anonymous-components'));
     Paginator::useBootstrap();
+
+    Gate::define('admin', fn (User $user) => $user->is_admin);
   }
 }

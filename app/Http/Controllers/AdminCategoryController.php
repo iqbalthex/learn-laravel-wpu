@@ -10,9 +10,7 @@ class AdminCategoryController extends Controller {
    * Display a listing of the resource.
    */
   public function index() {
-    if (auth()->guest() or auth()->user()->username !== '123') {
-      abort(403);
-    }
+    $this->authorize('admin');
 
     return view('dashboard.categories.index', [
       'title' => 'Categories Administrator',
