@@ -14,7 +14,7 @@ class IsAdmin {
    * @param  Request $next
    */
   public function handle(Request $request, Closure $next): Response {
-    if (auth()->guest() or auth()->user()->username !== '123') {
+    if (!auth()->check() || !auth()->user()->is_admin) {
       abort(403);
     }
 
