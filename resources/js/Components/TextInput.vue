@@ -3,8 +3,7 @@ import { onMounted, ref } from 'vue';
 
 defineProps({
   modelValue: {
-      type: String,
-      required: true,
+    type: String,
   },
 });
 
@@ -14,7 +13,7 @@ const input = ref(null);
 
 onMounted(() => {
   if (input.value.hasAttribute('autofocus')) {
-      input.value.focus();
+    input.value.focus();
   }
 });
 

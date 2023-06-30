@@ -1,11 +1,12 @@
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
+
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
+//import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 defineProps({
   canResetPassword: { type: Boolean, },
@@ -13,6 +14,9 @@ defineProps({
 });
 
 const title = "Log in";
+const formBox = ref(null);
+const signInForm = ref(null);
+const signUpForm = ref(null);
 
 const form = useForm({
   email: '',
@@ -21,20 +25,17 @@ const form = useForm({
 });
 
 const slideToRegister = event => {
-  const signInForm = document.querySelector(".sign-in-form");
-  const signUpForm = document.querySelector(".sign-up-form");
-
-  signInForm.classList.add("-top-full");
-  signUpForm.classList.remove("top-full");
+  formBox.value.classList.add("slide");
+  //signInForm.value.classList.add("-top-full");
+  //signUpForm.value.classList.remove("top-full");
 };
 
 const slideToLogin = event => {
-  const signInForm = document.querySelector(".sign-in-form");
-  const signUpForm = document.querySelector(".sign-up-form");
-
-  signInForm.classList.remove("-top-full");
-  signUpForm.classList.add("top-full");
+  formBox.value.classList.remove("slide");
+  //signInForm.value.classList.remove("-top-full");
+  //signUpForm.value.classList.add("top-full");
 };
+// how computed in composition
 
 const submit = () => {
   console.log(form.data());
@@ -42,14 +43,15 @@ const submit = () => {
     onFinish: () => form.reset('password'),
   });
 };
+
 </script>
 
 <template>
   <GuestLayout>
     <Head :title="title" />
 
-    <div class="relative w-full self-stretch flex flex-col justify-center items-center  text-center overflow-hidden bg-green-200 rounded-xl shadow-lg form-box">
-      <div class="absolute sign-in-form bg-green-400 transition-all">
+    <div ref="formBox" class="relative w-full self-stretch flex flex-col justify-center items-center  text-center overflow-hidden bg-green-200 rounded-xl shadow-lg form-box">
+      <div ref="signInForm" class="absolute sign-in-form bg-green-400">
         <form @submit.prevent="submit" class="flex flex-col justify-center items-center mb-3 space-y-2">
           <div>
             <Text-Input type="text" name="username" placeholder="Username" class="rounded-md text-2xl" />
@@ -69,7 +71,7 @@ const submit = () => {
         </div>
       </div>
 
-      <div class="absolute top-full sign-up-form bg-sky-400 transition-all">
+      <div ref="signUpForm" class="absolute sign-up-form bg-sky-400" style="opacity: .5">
         <form @submit.prevent="submit" class="flex flex-col justify-center items-center mb-3 space-y-2">
           <div>
             <Text-Input type="text" name="username" placeholder="Username" class="rounded-md text-2xl" />
@@ -95,3 +97,27 @@ const submit = () => {
     </div>
   </GuestLayout>
 </template>
+
+<style>
+
+.form-box > div {
+  transition: translate .4s ease-out;
+}
+
+.sign-up-form {
+  translate: 0 100vh;
+}
+
+.slide .sign-up-form {
+  translate: 0 0;
+}
+
+.sign-in-form {
+  translate: 0 0;
+}
+
+.slide .sign-in-form {
+  translate: 0 100vh;
+}
+
+</style>
