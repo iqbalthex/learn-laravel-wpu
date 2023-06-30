@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-  <div class="min-h-screen flex py-8 bg-gray-100 sm:bg-red-400 border border-black">
+  <div class="min-h-screen flex bg-gray-100 sm:bg-red-400">
     <slot />
   </div>
 </template>
