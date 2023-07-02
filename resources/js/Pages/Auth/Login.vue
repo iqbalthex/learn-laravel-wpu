@@ -49,23 +49,16 @@ const submit = () => {
 
     <div ref="container" class="w-full text-center px-8 py-16 bg-slate-200">
       <div class="h-full overflow-hidden bg-orange-200 rounded-md shadow-2xl">
-        <div class="relative h-full">
-          <div class="absolute bottom-0 w-full flex flex-col justify-center h-1/5 text-xl">
-            Don't have account yet ? <br/>
-            <button @click="slideToRegister" class="mx-auto px-2 py-0.5 rounded-md font-semibold bg-sky-300 text-slate-600 hover:text-black">
-              Register
-            </button>
-          </div>
-
-          <div class="absolute w-full flex flex-col justify-center h-1/5 text-xl">
+        <div class="relative flex flex-col justify-between h-full">
+          <div class="flex flex-col justify-center h-1/5 text-xl">
             Already have account ? <br/>
-            <button @click="slideToLogin" class="mx-auto px-2 py-0.5 rounded-md font-semibold bg-lime-400 text-slate-600 hover:text-black">
+            <button @click="slideToLogin">
               Login
             </button>
           </div>
 
-          <div ref="formBox" class="relative form-box h-4/5 bg-green-400">
-            <div ref="signInForm" class="sign-in-form w-full h-full top-0 flex justify-center items-center" style="transition-delay: .4s">
+          <div ref="formBox" class="form-box absolute w-full h-4/5 bg-green-400">
+            <div ref="signInForm" class="sign-in-form" style="transition-delay: .4s">
               <form @submit.prevent="submit" class="mb-3 space-y-2">
                 <div>
                   <Text-Input type="text" name="username" placeholder="Username" />
@@ -75,11 +68,11 @@ const submit = () => {
                   <Text-Input type="text" name="password" placeholder="Password" />
                   <Input-Error :message="form.errors.password" />
                 </div>
-                <Primary-Button class="text-3xl">Login</Primary-Button>
+                <Primary-Button>Login</Primary-Button>
               </form>
             </div>
 
-            <div ref="signUpForm" class="absolute sign-up-form w-full h-full top-0 flex justify-center items-center" style="transition-delay: .4s">
+            <div ref="signUpForm" class="sign-up-form absolute w-full" style="transition-delay: .4s">
               <form @submit.prevent="submit" class="mb-3 space-y-2">
                 <div>
                   <Text-Input type="text" name="username" placeholder="Username" />
@@ -93,10 +86,18 @@ const submit = () => {
                   <Text-Input type="text" placeholder="Password" />
                   <Input-Error :message="form.errors.password" />
                 </div>
-                <Primary-Button class="text-3xl">Register</Primary-Button>
+                <Primary-Button>Register</Primary-Button>
               </form>
             </div>
           </div>
+
+          <div class="flex flex-col justify-center h-1/5 text-xl">
+            Don't have account yet ? <br/>
+            <button @click="slideToRegister" class="bg-sky-300 hover:bg-sky-400">
+              Register
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -114,5 +115,13 @@ const submit = () => {
 .slide .form-box { @apply bg-sky-400; }
 .slide .sign-up-form { translate: 0; }
 .slide .sign-in-form { translate: -100% 0; }
+
+.form-box > div {
+  @apply h-full top-0 flex justify-center items-center
+}
+
+button {
+  @apply mx-auto px-2 py-0.5 rounded-md font-semibold bg-lime-400 text-slate-600 hover:bg-lime-500 hover:text-black
+}
 
 </style>
