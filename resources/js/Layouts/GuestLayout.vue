@@ -1,7 +1,8 @@
 <script setup>
+
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-// import Login from '@/Components/Pages/Auth/Login.vue';
 import { Link } from '@inertiajs/vue3';
+
 </script>
 
 <template>

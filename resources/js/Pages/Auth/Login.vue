@@ -5,11 +5,12 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 defineProps({
   canResetPassword: { type: Boolean, },
   status: { type: String, },
+  req: { type: String }
 });
 
 const title = "Log in";
@@ -19,9 +20,8 @@ const signInForm = ref(null);
 const signUpForm = ref(null);
 
 const form = useForm({
-  email: '',
+  username: '',
   password: '',
-  remember: false,
 });
 
 const slideToRegister = () => {
@@ -34,18 +34,20 @@ const slideToLogin = () => {
   formBox.value.classList.remove("translate-y-1/4", "sm:translate-y-0");
 };
 
-const submit = () => {
-  // console.log(form.data());
+const login = () => {
+  console.log(form.errors);
   form.post(route('login'), {
     onFinish: () => form.reset('password'),
   });
 };
 
+const register = null;
+
 </script>
 
 <template>
   <GuestLayout>
-    <Head :title="title" />
+    <Head :title="req" />
 
     <div ref="container" class="w-full text-center px-8 py-16 bg-slate-200">
       <div class="relative h-full verflow-hidden rounded-md bg-slate-100/75 sm:flex sm:items-center">
@@ -68,13 +70,13 @@ const submit = () => {
 
         <div ref="formBox" class="form-box absolute top-0 w-full h-4/5 rounded-lg shadow-xl bg-green-400 hiddn overflow-hidden sm:w-1/2 sm:h-full sm:translate-x-[10%]">
           <div ref="signInForm" class="sign-in-form" style="transition-delay: .4s">
-            <form @submit.prevent="submit" class="mb-3 space-y-2">
+            <form @submit.prevent="login" class="mb-3 space-y-2">
               <div>
-                <Text-Input type="text" name="username" placeholder="Username" />
+                <Text-Input v-model="form.username" type="text" name="username" placeholder="Username" />
                 <Input-Error :message="form.errors.username" />
               </div>
               <div>
-                <Text-Input type="text" name="password" placeholder="Password" />
+                <Text-Input v-model="form.password" type="text" name="password" placeholder="Password" />
                 <Input-Error :message="form.errors.password" />
               </div>
               <Primary-Button class="hover:bg-green-200 focus:bg-green-200">Login</Primary-Button>
@@ -82,7 +84,7 @@ const submit = () => {
           </div>
 
           <div ref="signUpForm" class="sign-up-form absolute w-full" style="transition-delay: .4s">
-            <form @submit.prevent="submit" class="mb-3 space-y-2">
+            <form @submit.prevent="register" class="mb-3 space-y-2">
               <div>
                 <Text-Input type="text" name="username" placeholder="Username" />
                 <Input-Error :message="form.errors.username" />
