@@ -8,24 +8,25 @@ import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+  form.post(route('register'), {
+    onFinish: () => form.reset('password', 'password_confirmation'),
+  });
 };
+
 </script>
 
 <template>
   <GuestLayout>
     <Head title="Register" />
 
-    <form @submit.prevent="submit">
+    <form @submit="submit">
       <div>
         <InputLabel for="name" value="Name" />
 

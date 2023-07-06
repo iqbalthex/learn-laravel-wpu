@@ -35,9 +35,10 @@ const slideToLogin = () => {
 };
 
 const login = () => {
-  console.log(form.errors);
+  console.log(form);
   form.post(route('login'), {
-    onFinish: () => form.reset('password'),
+    onStart: (res) => console.log(res),
+    onFinish: (res) => console.log(res)
   });
 };
 
@@ -47,7 +48,7 @@ const register = null;
 
 <template>
   <GuestLayout>
-    <Head :title="req" />
+    <Head :title="title" />
 
     <div ref="container" class="w-full text-center px-8 py-16 bg-slate-200">
       <div class="relative h-full verflow-hidden rounded-md bg-slate-100/75 sm:flex sm:items-center">
